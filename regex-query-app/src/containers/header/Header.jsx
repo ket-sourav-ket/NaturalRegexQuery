@@ -3,6 +3,7 @@ import people from '../../assets/people.png';
 import doc from '../../assets/document.png';
 import './header.css';
 
+
 const Header = () => (
   <div className="WhatRQ__header section__padding" id="home">
     <div className="WhatRQ__header-content">
@@ -16,7 +17,6 @@ const Header = () => (
 
       <div className="WhatRQ__header-content__people">
         <img src={people} />
-        <p>0 people requested access a visit in last 24 hours</p>
       </div>
     </div>
 
