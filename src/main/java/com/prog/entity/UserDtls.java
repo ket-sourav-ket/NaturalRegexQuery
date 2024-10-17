@@ -11,6 +11,18 @@ public class UserDtls {
 	private String name;
 	private String email;
 	private String password;
+	
+	public UserDtls() {
+		
+	}
+	public UserDtls(int user_id, String name, String email, String password) {
+		super();
+		this.user_id = user_id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public int getUser_id() {
 		return user_id;
 	}
@@ -23,13 +35,13 @@ public class UserDtls {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmail() {
+	public String getEmail() { //email
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
+	public String getPassword() { //password
 		return password;
 	}
 	public void setPassword(String password) {
