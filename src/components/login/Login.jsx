@@ -21,11 +21,15 @@ export async function loader({request, params}){
 export async function loginAction({request, params}) {
     const formData = await request.formData();
     const loginData = Object.fromEntries(formData);
-    let response = await fetch(`localhost:8090/UserDtls/${loginData.email}/${loginData.password}`)
+    console.log("Inside login action");
+    console.log(loginData);
+    let response = await fetch(`http://localhost:8090/UserDtls/${loginData.email}/${loginData.password}`)
+    console.log(response.ok)
     if (response.ok)
     {
-        let json = await response.json();
-        if (json.result === 'Success') {
+        let json = await response.text();
+        console.log(json);
+        if (json=== 'Success') {
             return redirect("/");
             
         }
@@ -44,17 +48,18 @@ export async function loginAction({request, params}) {
 export async function registerAction({request, params}) {
     const formData = await request.formData();
     const userData = Object.fromEntries(formData);
-    let response = await fetch('localhost:8090/register' , {
+    let response = await fetch('http://localhost:8090/register' , {
         method: 'POST',
+        mode:"no-cors",
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(userData)
-    })
+    });
     if (response.ok)
     {
         let json = await response.json();
-        return redirect('/')
+        return redirect('/');
     }
     else 
     {
