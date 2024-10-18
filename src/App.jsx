@@ -9,17 +9,19 @@ import './App.css';
 
 
 
-export async function loader(params, request) {
-  return true;
+export async function loader({request, params}) {
+
+  return false;
   
 }
 
 
 
 const App = () => {
-  let value = useLoaderData();
-  const [isLogged, setIsLogged] = useState( value);
-  const [isPressed, setIsPressed] = useState( value);
+  let state = useLoaderData();
+  console.log(state)
+  const [isLogged, setIsLogged] = useState( state);
+  const [isPressed, setIsPressed] = useState( state);
   const handleLogIn = (event) => 
   {
     localStorage.setItem('isLogged', false);
