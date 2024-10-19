@@ -18,10 +18,17 @@ export async function loader({request, params}) {
 
 
 const App = () => {
+
+  useEffect(()=> {
+    console.log(localStorage.getItem('isLogged'));
+    if(localStorage.getItem('isLogged') === 'true')
+      setIsLogged(true);
+    else 
+      setIsLogged(false);
+  });
   let state = useLoaderData();
-  console.log(state)
-  const [isLogged, setIsLogged] = useState( state);
-  const [isPressed, setIsPressed] = useState( state);
+  const [isLogged, setIsLogged] = useState( false);
+  const [isPressed, setIsPressed] = useState( false);
   const handleLogIn = (event) => 
   {
     localStorage.setItem('isLogged', false);
@@ -52,7 +59,7 @@ const App = () => {
       <div className='gradient__bg'>
       
       
-        <Navbar onLogin = {handleLogIn} isLogged = {isLogged} onLogout = {handleLogOut} />
+        <Navbar isLogged = {isLogged} />
         <Header onLogin = {handleLogIn} isLogged = {isLogged} onPress={handlePress} isPressed = {isPressed} />
         {isPressed && <Uploader />}
 

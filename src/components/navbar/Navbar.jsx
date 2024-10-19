@@ -31,9 +31,9 @@ const Navbar = (props) => {
         
         </>) : (
           <>
-        <Link to={`login`}> <Button onPress = {props.onLogin}>Sign In</Button> </Link>
+        <Link to={`login`}> <Button>Sign In</Button> </Link>
         
-        <Link to={`register`}> <Button onPress = {props.onLogin}>Register</Button> </Link>
+        <Link to={`register`}> <Button>Register</Button> </Link>
         </>
         ) }
         </div>

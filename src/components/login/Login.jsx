@@ -107,7 +107,6 @@ const LoginForm = ({children ,render, isLoading, setLoading}) =>
 
 function Login() {
     const value = useLoaderData();
-    console.log(value);
      const [isLoading, setLoading] = React.useState(false);
 
 
@@ -192,7 +191,9 @@ export async function demoAction({request,params}) {
     const formData = await request.formData();
     const creds = Object.fromEntries(formData);
     console.log(creds);
+    localStorage.setItem('isLogged','true');
     return redirect('/');
+    
     
 }
 
