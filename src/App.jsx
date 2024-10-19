@@ -59,7 +59,11 @@ const App = () => {
       <div className='gradient__bg'>
       
       
-        <Navbar isLogged = {isLogged} />
+        <Navbar isLogged = {isLogged}
+        onLogout = {()=>{
+          localStorage.setItem('isLogged', false);
+          setIsLogged(false)}} />
+
         <Header onLogin = {handleLogIn} isLogged = {isLogged} onPress={handlePress} isPressed = {isPressed} />
         {isPressed && <Uploader />}
 

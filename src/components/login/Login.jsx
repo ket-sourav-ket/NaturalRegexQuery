@@ -23,23 +23,26 @@ export async function loginAction({request, params}) {
     const loginData = Object.fromEntries(formData);
     console.log("Inside login action");
     console.log(loginData);
-    let response = await fetch(`http://localhost:8090/UserDtls/${loginData.email}/${loginData.password}`)
+    let response = await fetch(`/UserDtls/${loginData.email}/${loginData.password}`)
     console.log(response.ok)
     if (response.ok)
     {
         let json = await response.text();
         console.log(json);
         if (json=== 'Success') {
+            localStorage.setItem('isLogged','true');
             return redirect("/");
             
         }
         else 
         {
+            localStorage.setItem('isLogged','false');
             return redirect("/login");
         }
     }
     else 
     {
+        localStorage.setItem('isLogged','false');
         return redirect("/");
     }
     
@@ -48,9 +51,10 @@ export async function loginAction({request, params}) {
 export async function registerAction({request, params}) {
     const formData = await request.formData();
     const userData = Object.fromEntries(formData);
-    let response = await fetch('http://localhost:8090/register' , {
+    console.log(userData);
+    let response = await fetch('/register' , {
         method: 'POST',
-        mode:"no-cors",
+      //  mode:"no-cors",
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
@@ -58,11 +62,13 @@ export async function registerAction({request, params}) {
     });
     if (response.ok)
     {
+        localStorage.setItem('isLogged','true');
         let json = await response.json();
         return redirect('/');
     }
     else 
     {
+        localStorage.setItem('isLogged','false');
         return redirect("/login");
     }
     
@@ -191,7 +197,7 @@ export async function demoAction({request,params}) {
     const formData = await request.formData();
     const creds = Object.fromEntries(formData);
     console.log(creds);
-    localStorage.setItem('isLogged','true');
+   // localStorage.setItem('isLogged','true');
     return redirect('/');
     
     

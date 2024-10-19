@@ -31,7 +31,7 @@ const Navbar = (props) => {
         
         </>) : (
           <>
-        <Link to={`login`}> <Button>Sign In</Button> </Link>
+        <Link style={{marginRight: '10px'}} to={`login`}> <Button>Sign In</Button> </Link>
         
         <Link to={`register`}> <Button>Register</Button> </Link>
         </>
