@@ -20,7 +20,7 @@ const Header = (props) => (
       ):(
       <div className="WhatRQ__header-content__input">
         <input type="email" placeholder="Your Email Address" />
-        <Link to={`login`}> <Button onPress = {props.onLogin}>Get Started</Button>  </Link>
+        <Link to={`login`}> <Button  onPress = {props.onLogin}>Quick Search</Button>  </Link>
         
       </div>
       )

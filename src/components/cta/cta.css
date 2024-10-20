@@ -82,3 +82,13 @@
         line-height: 28px;
     }
 }
+
+#get_started{
+    color:purple;
+    font-style: italic;
+    font-size:25px;
+    border:2px dotted white;
+    padding: 15px;
+    border-radius: 50px;
+    background-color: #fff;
+}

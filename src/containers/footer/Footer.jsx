@@ -12,7 +12,7 @@ const Footer = () => (
     <div className="rq3__footer-links">
       <div className="rq3__footer-links_logo">
         <img src={rq3Logo} alt="rq3_logo" />
-        <p>Smritikana Bandopadhaya <br/> Swarnali Dey <br/> Saptarshi Saha <br/> Sourabh Saha  <br /> All Rights Reserved</p>
+        <p>Saptarshi Saha<br/>Smritikana Bandopadhaya<br/>Sourabh Saha <br/>Swarnali Dey <br/>All Rights Reserved</p>
       </div>
       <div className="rq3__footer-links_div">
         <h4>Links</h4>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as Components from './Components';
 import {Outlet, Link, useNavigate,Form, redirect, useLoaderData} from 'react-router-dom';
 import './login.css';
@@ -37,7 +37,8 @@ export async function loginAction({request, params}) {
         else 
         {
             localStorage.setItem('isLogged','false');
-            return redirect("/login");
+            alert('wrong credentials!!! Try again');
+            return redirect("/");
         }
     }
     else 
@@ -88,9 +89,9 @@ const RegisterForm = ({children ,render , isLoading , setLoading}) =>
 return(
     <Form method="post"  className="register-form" onSubmit={()=> setLoading(true)}>
         <span className="form-label"> Create Account </span>
-        <input className="form-input" placeholder="Name" type="text" name="name"/>
-        <input className="form-input" placeholder="Email" type="email" name="email"/>
-        <input className="form-input" placeholder="Password" type="password" name="password"/>
+        <input className="form-input" placeholder="Name" type="text" name="name" required/>
+        <input className="form-input" placeholder="Email" type="email" name="email" required/>
+        <input className="form-input" placeholder="Password" type="password" name="password" required/>
         {isLoading ? (render()) : (<button className="styled-button" type="submit"> {children} </button>)}
 
     </Form>
@@ -102,8 +103,8 @@ const LoginForm = ({children ,render, isLoading, setLoading}) =>
         <Form method="post"  className="register-form" 
                onSubmit={()=>{setLoading(true)}}>
             <span className="form-label"> Sign In </span>
-            <input className="form-input" placeholder="Email" type="email" name="email"/>
-            <input className="form-input" placeholder="Password" type="password" name="password"/>
+            <input className="form-input" placeholder="Email" type="email" name="email" required/>
+            <input className="form-input" placeholder="Password" type="password" name="password" required/>
             <a className="form-link" href="#">Forgot Your Password?</a>
             {isLoading ? (render()) : (<button className="styled-button" type="submit"> {children} </button>)}
         </Form>
@@ -113,6 +114,9 @@ const LoginForm = ({children ,render, isLoading, setLoading}) =>
 
 function Login() {
     const value = useLoaderData();
+    useEffect(()=>{
+        setLoading(false);
+    })
      const [isLoading, setLoading] = React.useState(false);
 
 
@@ -150,7 +154,7 @@ function Login() {
                   <Components.LeftOverlayPanel $signinIn={signIn}>
                       <Components.Title>Welcome Back!</Components.Title>
                       <Components.Paragraph>
-                          To keep connected with us please login with your personal info
+                          To stay connected with us please login with your personal info
                       </Components.Paragraph>
                      <Link to={'/login'}> <Components.GhostButton onClick={() => toggle(true)}>
                           Sign In
@@ -159,13 +163,13 @@ function Login() {
                       </Components.LeftOverlayPanel>
 
                       <Components.RightOverlayPanel $signinIn={signIn}>
-                        <Components.Title>Hello, Friend!</Components.Title>
+                        <Components.Title>Hello, Howdy!</Components.Title>
                         <Components.Paragraph>
                             Enter Your personal details and start journey with us
                         </Components.Paragraph>
                         <Link to={'/register'}>
                             <Components.GhostButton onClick={() => toggle(false)}>
-                                Sigin Up
+                                Sign Up
                             </Components.GhostButton> 
                             </Link>
                       </Components.RightOverlayPanel>
