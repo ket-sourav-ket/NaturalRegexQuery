@@ -5,3 +5,5 @@ export {default as Navbar} from './navbar/Navbar'
 export {default as Uploader} from './uploader/Uploader';
 export {default as Button} from './button/Button';
 export {default as Login} from './login/Login';
+export {default as Highlighter} from './highlighter/Highlighter'
+export {default as TextBox} from './textBox/TextBox';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Outlet , useLoaderData} from 'react-router-dom';
 import { Footer,Header,Possibility,Report,WhatRQ } from './containers';
-import { Article,Cta,Feature,Navbar,Uploader, Button, Login } from './components';
+import { Article,Cta,Feature,Navbar,Uploader, Button, Login , Highlighter , TextBox} from './components';
 
 
 import './App.css';
@@ -24,7 +24,7 @@ const App = () => {
     if(localStorage.getItem('isLogged') === 'true')
       setIsLogged(true);
     else 
-      setIsLogged(false);
+      setIsLogged(true);     // changed to false to true for testing 
   });
   let state = useLoaderData();
   const [isLogged, setIsLogged] = useState( false);
@@ -67,6 +67,8 @@ const App = () => {
         <Header onLogin = {handleLogIn} isLogged = {isLogged} onPress={handlePress} isPressed = {isPressed} />
         {isPressed && <Uploader />}
 
+        <Outlet/>
+
         
         
 
@@ -74,6 +76,7 @@ const App = () => {
       
       <WhatRQ />
       <Possibility/>
+      
       <Cta />
       <Footer />
             

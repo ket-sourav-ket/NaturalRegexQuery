@@ -1,0 +1,25 @@
+.scroll-container
+{
+    padding: 8px;
+    
+    height: 200px;
+    
+    overflow: auto;
+    overscroll-behavior: contain;
+    
+    background: white;
+    flex-direction : column;
+    justify-content : flex-end;
+}
+
+.scroll-outer
+{
+    margin-left: 20%;
+    width: 60%;
+    
+
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #8A2387cc;
+
+}

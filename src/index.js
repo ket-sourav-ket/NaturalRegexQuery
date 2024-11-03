@@ -3,13 +3,17 @@ import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App , {loader as rootLoader}from './App';
+
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { Login } from './components';
+import { Login, TextBox, Uploader } from './components';
 import { loginAction, loader as userLoader , registerAction , demoAction, BasicLogin} from './components/login/Login';
+import { searchLoader } from './components/textBox/TextBox';
+import { uploadAction } from './components/uploader/Uploader';
+
 
 
 
@@ -17,7 +21,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    loader: rootLoader
+    loader: rootLoader,
+    children : [
+      {
+        path: "search/:docId",
+        element: < TextBox/>,
+        loader: searchLoader
+      },
+    ],
+
   },
   {
     path: "login",
@@ -31,6 +43,12 @@ const router = createBrowserRouter([
     element: <Login />,
     action: registerAction,
     loader: userLoader,
+  },
+  {
+    path: "upload",
+    element: <Uploader />,
+    action: uploadAction,
+    
   },
 ]);
 
