@@ -1,11 +1,8 @@
 package com.prog.controller;
-import java.util.List;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +16,12 @@ public class UserController {
 	@Autowired
 	private UserDtlsService service;
 	
-/*	@GetMapping("/")
+	@GetMapping("/")
 	public String home() {
 		return "home";
-	  }  */
+	  }  
 	
-	@PostMapping("/register")
+	@PostMapping("/register") 		// for creating new account
 	public UserDtls register(@RequestBody UserDtls u) {	
 		return this.service.addUser(u); 
 	}
@@ -36,10 +33,9 @@ public class UserController {
 		return this.service.getUserDtls();
 	}
 	
-	@GetMapping("/UserDtls/{email}/{password}")
+	@GetMapping("/UserDtls/{email}/{password}")			// for logging into an existing account
 	public String getUserDtl(@PathVariable String email,@PathVariable String password){
 		return this.service.getUserDtl(email,password);
 	}
-	
 	
 }

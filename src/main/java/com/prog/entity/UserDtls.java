@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="user")
 public class UserDtls {
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int user_id;
@@ -12,9 +13,7 @@ public class UserDtls {
 	private String email;
 	private String password;
 	
-	public UserDtls() {
-		
-	}
+	public UserDtls() {	}
 	public UserDtls(int user_id, String name, String email, String password) {
 		super();
 		this.user_id = user_id;

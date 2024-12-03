@@ -5,4 +5,5 @@ import com.prog.entity.UserDtls;
 
 public interface UserDtlsDao extends JpaRepository<UserDtls,Integer> {
 
+
 }

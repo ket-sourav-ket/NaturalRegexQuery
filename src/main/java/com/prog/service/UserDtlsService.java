@@ -8,3 +8,4 @@ public interface UserDtlsService {
 	public UserDtls addUser(UserDtls u);
 	public String getUserDtl(String email, String password);
 }
+
