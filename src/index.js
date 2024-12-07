@@ -9,10 +9,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { Login, TextBox, Uploader } from './components';
+import { Login, QuickSearch, TextBox, Uploader } from './components';
 import { loginAction, loader as userLoader , registerAction , demoAction, BasicLogin} from './components/login/Login';
 import { searchLoader } from './components/textBox/TextBox';
 import { uploadAction } from './components/uploader/Uploader';
+import { quickAction } from './components/quickSearch/QuickSearch';
 
 
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     loader: rootLoader,
     children : [
       {
-        path: "search/:docId",
+        path: "search/:docId/:queryString",
         element: < TextBox/>,
         loader: searchLoader
       },
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
     action: uploadAction,
     
   },
+  {
+    path: 'quickSearch',
+    element : <QuickSearch />,
+    action : quickAction,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

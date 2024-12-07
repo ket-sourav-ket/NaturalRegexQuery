@@ -3,7 +3,7 @@ import people from '../../assets/people.png';
 import {Link} from 'react-router-dom'
 import doc from '../../assets/document.png';
 import './header.css';
-import {Button} from '../../components/index'
+import {Button,QuickSearch} from '../../components/index'
 
 
 const Header = (props) => (
@@ -19,9 +19,7 @@ const Header = (props) => (
         </>
       ):(
       <div className="WhatRQ__header-content__input">
-        <input type="email" placeholder="Your Email Address" />
-        <Link to={`login`}> <Button  onPress = {props.onLogin}>Quick Search</Button>  </Link>
-        
+        <QuickSearch/>
       </div>
       )
       }

@@ -1,0 +1,34 @@
+.quick-form
+{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start ;
+    
+}
+
+
+.query-field
+{
+    border-radius: 5px;
+    background-color : rgb(255, 244, 240)
+
+}
+
+.search-button
+{
+    padding: 0.5rem 1.5rem;
+    color: #fff;
+    margin-left: 1%;
+    background: #FF4820;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+

@@ -28,8 +28,9 @@ export async function uploadAction({request,params})
         }
         
     );
+    let docId = await response.text()
 
-    redirect(`search/${response.text}`);
+    redirect(`search/${docId}/${uploadData.query}`);
 
 }
 
@@ -40,7 +41,7 @@ function Uploader() {
     const [query, setQuery] = useState(null);
   return (
     <div className='upload-container'>
-        <Form onSubmit={()=>setTxtDocument(null)} method='post' style={{display: 'flex', width: '95%' , flexDirection: 'column' ,
+        <Form onSubmit={()=>setTxtDocument(null)} method='post' encType='multipart/form-data' style={{display: 'flex', width: '95%' , flexDirection: 'column' ,
         justifyContent: 'center' , alignItems: 'center', 
         border: '2px dashed #1475cf' , height: '300px', cursor: 'pointer', 
         borderRadius:'5px' , backgroundColor : 'rgb(255, 244, 240)'

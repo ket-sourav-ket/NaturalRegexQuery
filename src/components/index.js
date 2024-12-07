@@ -7,3 +7,5 @@ export {default as Button} from './button/Button';
 export {default as Login} from './login/Login';
 export {default as Highlighter} from './highlighter/Highlighter'
 export {default as TextBox} from './textBox/TextBox';
+export {default as Microphone} from './microphone/Microphone'
+export {default as QuickSearch} from './quickSearch/QuickSearch'
