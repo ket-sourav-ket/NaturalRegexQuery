@@ -10,13 +10,16 @@ export async function searchLoader({request, params})
   const queryString = params.queryString;
   let response = await fetch(`/searchFile/${document_id}/${queryString}`);
   let indexArray = await response.json();
+  console.log(indexArray);
   let responseD = await fetch(`/downloadFile/${document_id}`)
   let textData = await responseD.text() 
   return {textData,indexArray}
 }
 
 const TextBox = () => {
-  const { textData,index } = useLoaderData();
+  const { textData,indexArray} = useLoaderData();
+  console.log("Inside Textbox")
+  const index=indexArray
   console.log(textData)
   console.log(index)
 

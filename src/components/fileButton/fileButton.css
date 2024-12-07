@@ -1,0 +1,18 @@
+.quickSearch-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.upload-btn
+{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: #a6e1f3;
+
+}

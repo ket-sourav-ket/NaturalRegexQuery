@@ -1,5 +1,6 @@
+import { FcFinePrint } from "react-icons/fc";
 import { useState, useRef } from 'react'
-import './uploader.css'
+import './fileButton.css'
 import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import { AiFillFileImage } from 'react-icons/ai'
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -11,62 +12,77 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 
 
 
-export async function uploadAction({request,params})
+export async function quickAction({request,params})
 {
     const formData = await request.formData();
-    const uploadData = Object.fromEntries(formData);
-    console.log('inside search action');
+    console.log(formData.get("files"))
+    const uploadData = Object.fromEntries(formData); 
     console.log(uploadData);
-    let response = await fetch('/uploadFile',
+    console.log('inside search action');
+    //const data = new FormData();
+    //data.append('files',formData.get('files'))
+    //data.append('query', formData.get('query'))
+    //console.log(data)
+    let response = await fetch('/quickSearch',
         {
             method : 'POST',
-            body : formData
+         /*  header: {
+                'Content-Type' : 'multipart/form-data'
+            },  */
+            body : formData,
 
         }
         
     );
-    let docId = await response.text()
+    let doc = await response.text();
+    console.log(doc);
 
-    return redirect(`/search/${docId}/${uploadData.query}`);
+    return redirect(`/search/${doc}/${uploadData.query}`);
 
 }
 
-function Uploader() {
+
+const FileButton = () => {
+
     const submitRef = useRef();
+    const fileRef = useRef();
+    const queryRef = useRef();
     const [txtDocument, setTxtDocument] = useState(null)
     const [fileName, setFileName] = useState("No selected file")
     const [query, setQuery] = useState(null);
   return (
-    <div className='upload-container'>
-        <Form action='/upload' onSubmit={()=>setTxtDocument(null)} method='post' encType='multipart/form-data' style={{display: 'flex', width: '95%' , flexDirection: 'column' ,
+    <div className='quickSearch-container'>
+        
+        <Form action='quick' encType="multipart/form-data" onSubmit={()=>setTxtDocument(null)} method='post' style={{display: 'flex', width: '10%' , height:'5%', flexDirection:'row' ,
         justifyContent: 'center' , alignItems: 'center', 
-        border: '2px dashed #1475cf' , height: '300px', cursor: 'pointer', 
-        borderRadius:'5px' , backgroundColor : 'rgb(255, 244, 240)'
+        border: '2px dashed #1475cf' , cursor: 'pointer', 
+        borderRadius:'5px' , backgroundColor : 'rgb(255, 244, 240)',
         }}
         onClick={() => document.querySelector(".input-field").click()}
         >
-            <input name='files' type="file" accept='.txt' className='input-field' hidden
+            <input ref={fileRef} name='files' type="file" accept='.txt' className="input-field" hidden
             onChange={({ target: {files}}) => {
                 files[0] && setFileName(files[0].name)
                 if(files){
                     setTxtDocument("File: ")
                 }
-            }}/>
+            }}  />
            
             {txtDocument ?
             <>
             <img src={txtImg} width={100} height={100} alt={txtDocument + fileName} />
-            <button ref={submitRef} type='submit' hidden onClick={(eventWrapper) => eventWrapper.stopPropagation()}> Actual UPLOAD </button> 
+            <button ref={submitRef} type='submit' hidden > Actual UPLOAD </button> 
             </>
             :
             <>
-            <MdCloudUpload color='#1475cf' size={60} />
+            <FcFinePrint size={50} />
             <p>Browse Files to Upload</p>
             </>
         }
 
-            <input value={query} type='text' name='query' placeholder='Enter your query' hidden></input>
+            <input style={{width: '20%'}} ref={queryRef} value={query} type='text' name='query' placeholder='Enter your query' hidden></input>
         </Form>
+        
         <div id='querydiv' style={{display : 'flex',
                     alignSelf : 'stretch',
                     paddingLeft : '2.5%',
@@ -74,7 +90,10 @@ function Uploader() {
                     flexDirection : 'row',
                     justifyContent: 'flex-end'}}>
         <AiOutlineFileSearch color='#AE67FA' size={'35px'} style={{marginTop : '10px'}} />
-        <input className='query-box' value={query} type='text' name='dummyQuery' placeholder='Enter your query' onChange={(eventWrapper)=>setQuery(eventWrapper.target.value)}></input> 
+        <input style={{width : '70%',
+                       height :  '70%'
+
+        }}   value={query} type='text' name='dummyQuery' placeholder='Enter your query' onChange={(eventWrapper)=>setQuery(eventWrapper.target.value)}></input> 
         
         </div>
 
@@ -101,6 +120,7 @@ function Uploader() {
         </div>
     </div>
   )
+  
 }
 
-export default Uploader
+export default FileButton
