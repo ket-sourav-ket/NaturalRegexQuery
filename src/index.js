@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     
   },
   {
-    path: 'quickSearch',
+    path: "quickSearch",
     element : <QuickSearch />,
     action : quickAction,
   }
